@@ -105,13 +105,15 @@ resource "azurerm_windows_function_app" "function" {
       unauthenticated_action = "RedirectToLoginPage"
 
       login {
-        token_store_enabled = false
+        token_store_enabled = var.auth_settings.token_store_enabled
       }
 
       active_directory_v2 {
         client_id                  = var.auth_settings.active_directory.client_id
         client_secret_setting_name = "MICROSOFT_PROVIDER_AUTHENTICATION_SECRET"
         tenant_auth_endpoint       = var.auth_settings.active_directory.tenant_auth_endpoint
+        allowed_applications       = var.auth_settings.active_directory.allowed_applications
+        allowed_audiences          = var.auth_settings.active_directory.allowed_audiences
       }
     }
   }

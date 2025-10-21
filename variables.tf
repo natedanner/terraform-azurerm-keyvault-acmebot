@@ -20,7 +20,10 @@ variable "auth_settings" {
       client_id            = string
       client_secret        = string
       tenant_auth_endpoint = string
+      allowed_applications = optional(list(string), [])
+      allowed_audiences    = optional(list(string), [])
     })
+    token_store_enabled = optional(bool, false)
   })
   description = "Authentication settings for the function app"
   default     = null
