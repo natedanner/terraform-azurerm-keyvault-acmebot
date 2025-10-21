@@ -149,11 +149,12 @@ resource "azurerm_windows_function_app" "function" {
   }
 }
 
-data "azurerm_function_app_host_keys" "function" {
-  name                = azurerm_windows_function_app.function.name
-  resource_group_name = var.resource_group_name
-
-  depends_on = [
-    azurerm_windows_function_app.function
-  ]
-}
+# Temporarily commented out due to Function App timing issues
+# data "azurerm_function_app_host_keys" "function" {
+#   name                = azurerm_windows_function_app.function.name
+#   resource_group_name = var.resource_group_name
+#
+#   depends_on = [
+#     azurerm_windows_function_app.function
+#   ]
+# }
